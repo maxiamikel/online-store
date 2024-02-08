@@ -22,8 +22,7 @@
 <body>
 
   <!-- Navigation -->
-  
-  <div th:replace="administrator/admin_template :: header-admin" th:unless="${activeUser==null}"></div>
+  <div th:include="administrator/admin_template.html :: header-admin" th:if="${activeuserid == null}"></div>
 
   <!-- Page Content -->
   <div class="container">

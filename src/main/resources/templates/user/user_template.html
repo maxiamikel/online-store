@@ -56,9 +56,10 @@
 
                         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
                                 id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"> <span th:text="${user.email}"></span> </a>
+                                aria-expanded="false"> <span>user.email</span> </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="">Carrito</a>
+                                <a class="dropdown-item" th:href="@{/logout}">Salir</a>
                             </div>
                         </li>
                     </ul>

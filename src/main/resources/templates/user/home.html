@@ -22,8 +22,8 @@
 <body>
 
   <!-- Navigation -->
-  <div th:replace="user/user_template.html :: header"></div>
-  <div th:replace="user/user_template.html :: header-user"></div>
+  <div th:include="user/user_template.html :: header" th:if="${activeuserid == null}"></div>
+  <div th:include="user/user_template.html :: header-user" th:unless="${activeuserid == null}"></div>
 
   <!-- Page Content -->
   <div class="container">
@@ -31,7 +31,7 @@
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
       <h1 class="display-3">Bienvenido a Spring Ecommerce 2021</h1>
-      <h2 th:text="${'JJ'+user.email}"></h2>
+      <h2 th:text="${'USER ACTIVE: '+activeuserid}"></h2>
       <p class="lead">Tu tienda de productos en Línea</p>
     </header>
 

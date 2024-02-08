@@ -28,16 +28,11 @@ public class UserController {
 
     @GetMapping("")
     public String home(HttpSession session, Model model) {
-        User user = userService.findById(Long.parseLong(session.getAttribute("activeUser").toString())).get();
-        model.addAttribute("activeUser", session.getAttribute("activeUser"));
-        model.addAttribute("user", user);
+        // User user =
+        // userService.findById(Long.parseLong(session.getAttribute("activeUser").toString())).get();
+        model.addAttribute("activeuserid", session.getAttribute("activeuserid"));
+        // model.addAttribute("user", user);
         return "user/home";
-    }
-
-    @GetMapping("/user")
-    public String userHome(HttpSession session, Model model) {
-        model.addAttribute("activeUser", session.getAttribute("activeUser"));
-        return "user/user_home";
     }
 
     @GetMapping("/login")
@@ -49,11 +44,9 @@ public class UserController {
     public String auth(User userLog, HttpSession session) {
         Optional<User> user = userService.findByEmail(userLog.getEmail());
         if (user.isPresent()) {
-            session.setAttribute("activeUser", user.get().getId());
+            session.setAttribute("activeuserid", user.get().getId());
             if (user.get().getUserType().equals(UserType.ADMIN)) {
                 return "redirect:/administrator";
-            } else if (user.get().getUserType().equals(UserType.USER)) {
-                return "redirect:/";
             } else {
                 return "redirect:/";
             }
@@ -63,4 +56,9 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("activeuserid");
+        return "redirect:/";
+    }
 }
